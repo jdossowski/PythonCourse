@@ -1,0 +1,38 @@
+Notes on game rules:
+
+You have 5 guesses
+ - You can trade two of your guesses for hints (the hints will be - is the # odd or even and is the number bigger or less than    54.5 which is the median between 10 and 99)
+ - You'll be told when one of the digits in your number matches a digit in the secret number (but won't necessarily know which digit it is.
+
+Notes on code for random number generator:
+from random import randint
+from math import floor
+from math import isnan
+
+secretNum = randint(10,99)
+
+secretNumOnes = secretNum % 10
+
+secretNumTens = floor(secretNum / 10)
+
+#print("The secret number is {0} and the tens place is {1} and the ones place is {2}".format(secretNum, secretNumTens, secretNumOnes))
+
+
+        
+
+23 45 - correct
+
+12 17 - correct
+
+91 19 - correct
+
+45 65 - correct
+
+45 55 - correct
+
+55 45 - correct
+
+55 55 - correct
+
+34 34 - correct
+
