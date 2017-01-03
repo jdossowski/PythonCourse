@@ -21,7 +21,7 @@ def getList():
     stop = True
 
     while stop:
-        more = input("Do you have an integer to add to your list? Y or N: ")
+        more = input("Do you have an integer to add to your list? Y or N: ").capitalize()
         if more == "Y":
             aListItem = int(input("Enter an integer please: "))
             aList.append(aListItem)
