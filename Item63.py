@@ -10,8 +10,7 @@ This program will move a file from one folder to another on my desktop.
 import shutil, os
 
 
-source = 'C:\\Users\Student\Desktop\Folder_A'
-backslash = '\\'
+source = 'C:\\Users\Student\Desktop\Folder_A\\' #additional \ needed to escape the \ needed for file name string
 destination = 'C:\\Users\Student\Desktop\Folder_B'
 
 files = os.listdir(source)
@@ -21,8 +20,8 @@ files = os.listdir(source)
 
 for f in files:
     if f.endswith(".txt"):
-        shutil.move(source+backslash+f ,destination)
-        print("File that moved was: {}".format(source+backslash+f))
+        shutil.move(source+f ,destination)
+        print("File that moved was: {}".format(source+f))
         
 
 
