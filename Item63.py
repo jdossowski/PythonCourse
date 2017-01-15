@@ -1,9 +1,7 @@
 '''
 Python 3.5.2 (v3.5.2:4def2a2901a5, Jun 25 2016, 22:01:18)
 
-Author: John Ossowski, Tech Academy Student (based on code found at:
-http://interactivepython.org/runestone/static/pythonds/SortSearch/TheBubbleSort.html
-and http://python3.codes/popular-sorting-algorithms/
+Author: John Ossowski, Tech Academy Student 
 
 Purpose: Learning to code in Python!  (Item 63 in Python Course)
 This program will move a file from one folder to another on my desktop.
