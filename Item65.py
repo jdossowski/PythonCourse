@@ -22,8 +22,8 @@ class MyFrame(Frame):
     def __init__(self):
         Frame.__init__(self)
         self.master.title("File Mover")
-        self.master.rowconfigure(5, weight=1)
-        self.master.columnconfigure(5, weight=1)
+        self.master.rowconfigure(3, weight=1)
+        self.master.columnconfigure(2, weight=1)
         self.grid(sticky=W+E+N+S)
 
         #BUTTONS----------------------------------------------------------------------------------------
