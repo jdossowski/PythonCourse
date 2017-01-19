@@ -25,6 +25,8 @@ class MyFrame(Frame):
         self.master.rowconfigure(3, weight=1)
         self.master.columnconfigure(2, weight=1)
         self.grid(sticky=W+E+N+S)
+        self.source = "source"
+        self.destination = "destination"
 
         #BUTTONS----------------------------------------------------------------------------------------
         #Button for getting source folder
@@ -67,30 +69,35 @@ class MyFrame(Frame):
 
     #Command code for the move files button - first tests source and destination and executes file move if appropriate
     def file_mover(self):
-        try:
-            hasattr('self','source') and hasattr('self','destination')
+        if self.source == "source" and self.destination == "destination":
+            messagebox.showwarning(title='Warning!',message='Please enter both source and destination folders.')
+            self.move_lbl.config(text="Error!")
+        elif self.source == "source" or self.destination == "destination":
+            messagebox.showwarning(title='Warning!',message='Please enter both source and destination folders.')
+            self.move_lbl.config(text="Error!")
+        elif self.source == self.destination:
+            messagebox.showwarning(title='Warning!', message='Source and destination are the same. Try again.')
+            self.move_lbl.config(text="Error!")
+        else:
+            files = os.listdir(self.source) #makes a list of all files in the self.source directory
+            contents = os.listdir(self.destination) #makes a list of all files in the self.destination directory
+            
+            for file in files:                              #this routine ensures that the file in source directory does not exist in the destination directory
+                for i in range(len(contents)):              
+                    if file == contents[i]:
+                        files.remove(file)
+                    undup_files = files
 
-            if self.source == self.destination:
-                messagebox.showwarning(title='Warning!', message='Source and destination are the same. Try again.')
-                self.move_lbl.config(text="Error!")
-
-            else:
-                files = os.listdir(self.source) #makes a list of all files in the self.source directory
-
-                for file in files:
-                    status = os.stat(self.source+'/'+file)      #gets status of file
-                    modified = status.st_mtime                  #isolating the time that file was last modified
-                    now = time.time()                           #current time
-                    recent = floor((now - modified)/3600)       #get age of file in hours
-                    if recent < 24:                             #check to see if file recently modified, within past 24 hours
-                        shutil.move(self.source+'/'+file,self.destination)    #moves files
+            for file in undup_files:                        #this routine will move unduplicated files that are <24 hours old
+                status = os.stat(self.source+'/'+file)      #gets status of file
+                modified = status.st_mtime                  #isolating the time that file was last modified
+                now = time.time()                           #current time
+                recent = floor((now - modified)/3600)       #get age of file in hours
+                if recent < 24:                             #check to see if file recently modified, within past 24 hours
+                    shutil.move(self.source+'/'+file,self.destination)    #moves files
 
                 self.move_lbl.config(text="Files moved from: " + self.source + " to: " + self.destination)
     
-        except AttributeError:
-            messagebox.showwarning(title='Warning!',message='Please enter both source and destination folders.')
-            self.move_lbl.config(text="Error!")
-
 if __name__ == "__main__":
     MyFrame().mainloop()
 
