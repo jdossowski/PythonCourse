@@ -86,7 +86,7 @@ class MyFrame(Frame):
                 for i in range(len(contents)):              
                     if file == contents[i]:
                         files.remove(file)
-                    undup_files = files
+                undup_files = files
 
             for file in undup_files:                        #this routine will move unduplicated files that are <24 hours old
                 status = os.stat(self.source+'/'+file)      #gets status of file
